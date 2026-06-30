@@ -1,0 +1,156 @@
+/* ============================================================
+   The Tryon Bottle — Blog styles
+   Shared by the blog listing page, post template, and all posts.
+   Matches the colors, fonts, nav, and footer of the main site.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --black:      #111111;
+  --deep-black: #080808;
+  --red:        #c4241a;
+  --red-dark:   #9e1b13;
+  --white:      #ffffff;
+  --off-white:  #f8f6f3;
+  --warm-gray:  #e8e4de;
+  --text:       #1c1c1c;
+  --muted:      #6b6460;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ─── NAV (solid, since blog pages have no hero) ─────────── */
+#blogNav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 68px;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--black);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.nav-logo img { height: 42px; display: block; filter: brightness(0) invert(1); }
+.nav-links { list-style: none; display: flex; gap: 2.25rem; }
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
+.nav-burger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── SHARED LAYOUT ─────────────────────────────────────── */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 2.5rem; }
+.breadcrumb { font-size: 0.78rem; letter-spacing: 0.05em; color: var(--muted); padding: 1.6rem 0 0; }
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--red); }
+
+/* ─── BLOG HEADER ───────────────────────────────────────── */
+.blog-hero { background: var(--off-white); padding: 3rem 0 3.5rem; border-bottom: 1px solid var(--warm-gray); }
+.blog-eyebrow { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.22em; color: var(--red); font-size: 1.05rem; }
+.blog-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 6vw, 4.4rem); line-height: 0.95; margin: 0.4rem 0 0.8rem; }
+.blog-intro { font-size: 1.05rem; color: var(--muted); max-width: 660px; }
+
+/* ─── POST GRID (listing) ───────────────────────────────── */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 2.5rem;
+  padding: 3.5rem 0 4.5rem;
+}
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--warm-gray);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.10); }
+.post-card-img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--warm-gray); }
+.post-card-body { padding: 1.4rem 1.5rem 1.7rem; display: flex; flex-direction: column; flex: 1; }
+.post-card-meta { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); font-weight: 700; }
+.post-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; line-height: 1.02; margin: 0.5rem 0 0.6rem; }
+.post-card-excerpt { font-size: 0.95rem; color: var(--muted); flex: 1; }
+.post-card-link { margin-top: 1.1rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); }
+
+.blog-empty { padding: 3.5rem 0 4.5rem; color: var(--muted); font-size: 1.05rem; }
+
+/* ─── ARTICLE (single post) ─────────────────────────────── */
+.article { max-width: 760px; margin: 0 auto; padding: 0 2.5rem; }
+.article-header { padding: 2.4rem 0 1.8rem; }
+.article-meta { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); font-weight: 700; }
+.article-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 0.96; margin: 0.5rem 0 0.7rem; }
+.article-dek { font-size: 1.15rem; color: var(--muted); line-height: 1.6; }
+.article-hero-img { width: 100%; max-height: 460px; object-fit: cover; border-radius: 16px; display: block; margin: 0.5rem 0 2.2rem; }
+
+.article-body { font-size: 1.08rem; line-height: 1.85; color: var(--text); }
+.article-body p { margin: 0 0 1.4rem; }
+.article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1.05; margin: 2.4rem 0 1rem; }
+.article-body h3 { font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 1.25rem; margin: 1.9rem 0 0.7rem; }
+.article-body a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
+.article-body ul, .article-body ol { margin: 0 0 1.4rem 1.3rem; }
+.article-body li { margin-bottom: 0.55rem; }
+.article-body img { width: 100%; border-radius: 12px; margin: 1.6rem 0; }
+.article-body blockquote { border-left: 3px solid var(--red); padding-left: 1.2rem; margin: 1.6rem 0; color: var(--muted); font-style: italic; }
+
+/* CTA box reused at the bottom of every post */
+.post-cta {
+  margin: 3rem auto 1rem;
+  max-width: 760px;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 16px;
+  padding: 2.4rem 2.2rem;
+  text-align: center;
+}
+.post-cta h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; margin-bottom: 0.6rem; color: var(--white); }
+.post-cta p { color: rgba(255,255,255,0.7); margin-bottom: 1.4rem; }
+.btn { display: inline-block; padding: 0.9rem 2.75rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; border-radius: 4px; }
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+.back-link { display: inline-block; max-width: 760px; margin: 2.5rem auto 0; padding: 0 2.5rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); text-decoration: none; }
+
+/* ─── FOOTER ────────────────────────────────────────────── */
+footer { background: var(--deep-black); padding: 1.75rem 2.5rem; color: rgba(255,255,255,0.3); margin-top: 3.5rem; }
+.footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.footer-logo img { height: 32px; filter: brightness(0) invert(1); opacity: 0.35; }
+.footer-copy { font-size: 0.78rem; }
+.footer-social { display: flex; gap: 0.6rem; }
+.footer-social .social-icon { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.footer-social .social-icon svg { width: 13px; height: 13px; fill: rgba(255,255,255,0.5); }
+
+/* ─── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 760px) {
+  #blogNav { padding: 0 1.3rem; }
+  .nav-links { position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--black); display: none; }
+  .nav-links.open { display: flex; }
+  .nav-burger { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; width: 100%; padding: 1rem 1.5rem; }
+  .wrap, .article { padding-left: 1.3rem; padding-right: 1.3rem; }
+}
